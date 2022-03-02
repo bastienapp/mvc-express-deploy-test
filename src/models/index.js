@@ -1,14 +1,14 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable global-require */
 /* eslint-disable import/no-dynamic-require */
-const fs = require("fs");
-const mysql = require("mysql2/promise");
-const path = require("path");
+const fs = require('fs');
+const mysql = require('mysql2/promise');
+const path = require('path');
 
 const load = async (models) => {
   const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
 
-  const connection = await mysql.createConnection({
+  const connection = await mysql.createPool({
     host: DB_HOST,
     user: DB_USER,
     password: DB_PASSWORD,
@@ -16,7 +16,7 @@ const load = async (models) => {
   });
 
   fs.readdirSync(__dirname)
-    .filter((file) => file !== "AbstractManager.js" && file !== "index.js")
+    .filter((file) => file !== 'AbstractManager.js' && file !== 'index.js')
     .forEach((file) => {
       const Manager = require(path.join(__dirname, file));
 
@@ -33,7 +33,7 @@ try {
 }
 
 const handler = {
-  get (obj, prop) {
+  get(obj, prop) {
     if (prop in obj) {
       return obj[prop];
     }
