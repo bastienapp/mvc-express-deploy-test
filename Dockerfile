@@ -5,8 +5,6 @@ WORKDIR /usr/src/app
 
 ARG DB_HOST=${DB_HOST}
 ENV DB_HOST=${DB_HOST}
-ARG DB_PORT=${DB_PORT}
-ENV DB_PORT=${DB_PORT}
 ARG DB_USER=${DB_USER}
 ENV DB_USER=${DB_USER}
 ARG DB_PASSWORD=${DB_PASSWORD}
@@ -22,6 +20,8 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+
+RUN npm run migrate
 
 CMD [ "npm", "run", "migrate" ]
 CMD [ "npm", "start" ]
