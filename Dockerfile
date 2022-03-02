@@ -3,6 +3,7 @@ FROM node:16.14
 # Create app directory
 WORKDIR /usr/src/app
 
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
 ARG DB_HOST=${DB_HOST}
 ENV DB_HOST=${DB_HOST}
 ARG DB_PORT=${DB_PORT}
