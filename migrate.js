@@ -4,10 +4,10 @@ const fs = require('fs');
 const mysql = require('mysql2/promise');
 
 const migrate = async () => {
-  const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
+  const { DB_USER, DB_PASSWORD, DB_NAME } = process.env;
 
   const connection = await mysql.createPool({
-    host: DB_HOST,
+    host: 'http://srv-captain--database-db',
     user: DB_USER,
     password: DB_PASSWORD,
     multipleStatements: true,
