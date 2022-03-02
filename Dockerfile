@@ -23,5 +23,4 @@ COPY . .
 
 RUN npm run migrate
 
-CMD [ "npm", "run", "migrate" ]
 CMD [ "npm", "start" ]
